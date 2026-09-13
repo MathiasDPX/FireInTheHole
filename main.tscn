@@ -1,11 +1,16 @@
 [gd_scene format=4 uid="uid://bsdfb28popsyt"]
 
-[ext_resource type="Script" uid="uid://c8myq1lsrb2x5" path="res://player.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://c8myq1lsrb2x5" path="res://scripts/player.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://chh3fu7i6tiaj" path="res://assets/images/player.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://bawrdchxxdg2f" path="res://assets/images/nether.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://okoxhp31osmp" path="res://assets/images/godot-flame.png" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://d5pqtr1quvuq" path="res://collect_fire.gd" id="4_7mycd"]
-[ext_resource type="AudioStream" uid="uid://bj6v5kr1am5ff" path="res://assets/sounds/coin-collect.mp3" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://d5pqtr1quvuq" path="res://scripts/collect_fire.gd" id="4_7mycd"]
+[ext_resource type="AudioStream" uid="uid://ch3gc0eamvqh8" path="res://assets/sounds/fire-in-the-hole.mp3" id="6_kek77"]
+[ext_resource type="FontFile" uid="uid://dlkwll7q1u4b1" path="res://assets/COMIC.TTF" id="7_5vw27"]
+[ext_resource type="Script" uid="uid://bmv1g0fjut01o" path="res://scripts/guy_fieri.gd" id="7_kek77"]
+[ext_resource type="Texture2D" uid="uid://cchqkspqwi3rh" path="res://assets/images/guy_fieri.png" id="8_kek77"]
+[ext_resource type="Texture2D" uid="uid://q8i0mv533u5g" path="res://assets/images/background.webp" id="10_4c57u"]
+[ext_resource type="FontFile" uid="uid://bl2gccrjhkd1b" path="res://assets/Jua.woff2" id="10_efxa6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyo6f"]
 size = Vector2(623.64966, 617.9305)
@@ -23,6 +28,15 @@ sources/0 = SubResource("TileSetAtlasSource_lquwl")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jdyg"]
 size = Vector2(66, 69)
 
+[sub_resource type="LabelSettings" id="LabelSettings_iyo6f"]
+font = ExtResource("7_5vw27")
+font_size = 63
+font_color = Color(0.90165246, 0.3233834, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
+font = ExtResource("10_efxa6")
+font_size = 19
+
 [node name="Node" type="Node" unique_id=298772228]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1096654155]
@@ -30,6 +44,7 @@ position = Vector2(570, 444)
 script = ExtResource("1_h2yge")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1731510504]
+z_index = 1
 scale = Vector2(0.20781249, 0.08797907)
 texture = ExtResource("1_ig7tw")
 
@@ -48,7 +63,7 @@ tile_map_data = PackedByteArray("AAD//woAAAAAAAAAAAD//wsAAAAAAAAAAAD//wwAAAAAAAA
 tile_set = SubResource("TileSet_7jdyg")
 
 [node name="Coin" type="Area2D" parent="." unique_id=892460033]
-position = Vector2(1465, 437)
+position = Vector2(2408, 414)
 script = ExtResource("4_7mycd")
 
 [node name="Sprite2D" type="Sprite2D" parent="Coin" unique_id=1603853626]
@@ -62,8 +77,73 @@ shape = SubResource("RectangleShape2D_7jdyg")
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="Coin" unique_id=1530241388]
 position = Vector2(3.0517578e-05, 6.1035156e-05)
-stream = ExtResource("5_lquwl")
+stream = ExtResource("6_kek77")
 
-[node name="Node" type="Node" parent="." unique_id=1124536249]
+[node name="GuyFieri" type="Area2D" parent="." unique_id=1410199636]
+position = Vector2(1368, 359)
+scale = Vector2(0.42840648, 0.4046794)
+script = ExtResource("7_kek77")
+
+[node name="Sprite" type="Sprite2D" parent="GuyFieri" unique_id=1229051981]
+position = Vector2(-39.68194, -2.471092)
+scale = Vector2(0.99999994, 1)
+texture = ExtResource("8_kek77")
+
+[node name="Label" type="Label" parent="GuyFieri" unique_id=2098841253]
+offset_left = -287.1104
+offset_top = -474.44968
+offset_right = 226.4206
+offset_bottom = -279.23346
+text = "Press X to talk
+to him 🔥🔥🔥"
+label_settings = SubResource("LabelSettings_iyo6f")
+horizontal_alignment = 1
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1156704436]
+
+[node name="Control" type="Control" parent="HUD" unique_id=359897738]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogText" type="Label" parent="HUD/Control" unique_id=318395336]
+z_index = 2
+layout_mode = 0
+offset_left = 210.0
+offset_top = 500.0
+offset_right = 996.0
+offset_bottom = 614.0
+text = "Hello World, this is a template for dialog"
+label_settings = SubResource("LabelSettings_4c57u")
+autowrap_mode = 2
+
+[node name="DialogBackground" type="ColorRect" parent="HUD/Control" unique_id=2060508214]
+z_index = 1
+layout_mode = 0
+offset_left = 201.0
+offset_top = 490.0
+offset_right = 1005.0
+offset_bottom = 625.0
+color = Color(0.48235294, 0.2901961, 0.24313726, 1)
+
+[node name="DialogBorder" type="ColorRect" parent="HUD/Control" unique_id=2051787486]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 484.0
+offset_right = 1012.0
+offset_bottom = 631.0
+color = Color(0.69803923, 0.5058824, 0.37254903, 1)
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1532974298]
+layer = -2
+
+[node name="Sprite" type="Sprite2D" parent="Background" unique_id=14929977]
+z_index = -1
+position = Vector2(570, 311.25)
+scale = Vector2(1.075926, 1.0475819)
+texture = ExtResource("10_4c57u")
 
 [connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]

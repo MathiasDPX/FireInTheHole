@@ -10,7 +10,7 @@ func _ready():
 # trigger when coin get touched by a player
 func _on_body_entered(body):
 	if body is CharacterBody2D and collected == false:
-		emit_signal("get_coin")
+		ScoreManager.fires += 1
 		collected = true
 		
 		$Sound.play()
