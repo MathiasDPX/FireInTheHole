@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bsdfb28popsyt"]
 
 [ext_resource type="Script" uid="uid://c8myq1lsrb2x5" path="res://scripts/player.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://chh3fu7i6tiaj" path="res://assets/images/player.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://chh3fu7i6tiaj" path="res://assets/images/faces/easy.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://bawrdchxxdg2f" path="res://assets/images/nether.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://okoxhp31osmp" path="res://assets/images/godot-flame.png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://d5pqtr1quvuq" path="res://scripts/collect_fire.gd" id="4_7mycd"]

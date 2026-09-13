@@ -1,7 +1,5 @@
 extends Area2D
 
-signal get_coin
-
 var collected = false
 
 func _ready():

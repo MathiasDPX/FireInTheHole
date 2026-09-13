@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 
+var face_idx = 1
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -23,3 +25,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("switch"):
+		if ScoreManager.claimed_fires == 0:
+			return
+			
+		face_idx = (face_idx + 1) % (ScoreManager.claimed_fires + 1)
+		
+		if face_idx == 0:
+			$Sprite2D.texture = load("res://assets/images/faces/easy.png")
+		elif face_idx == 1:
+			$Sprite2D.texture = load("res://assets/images/faces/peaceful_demon.webp")
