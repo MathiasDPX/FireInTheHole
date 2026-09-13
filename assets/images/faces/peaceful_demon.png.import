@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4aycekao10ls"
-path="res://.godot/imported/peaceful_demon.webp-2ddac2c43025cd525efcdd300764e59f.ctex"
+uid="uid://b1357u00i14j0"
+path="res://.godot/imported/peaceful_demon.png-5be1697dadd9812d774ec1e3eed3b2e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/faces/peaceful_demon.webp"
-dest_files=["res://.godot/imported/peaceful_demon.webp-2ddac2c43025cd525efcdd300764e59f.ctex"]
+source_file="res://assets/images/faces/peaceful_demon.png"
+dest_files=["res://.godot/imported/peaceful_demon.png-5be1697dadd9812d774ec1e3eed3b2e7.ctex"]
 
 [params]
 
