@@ -32,7 +32,9 @@ func _process(_delta: float) -> void:
 			if ScoreManager.claimed_fires != ScoreManager.fires:
 				# fires were not claimed, give powerup
 				if ScoreManager.fires == 1:
-					set_dialog(":yayayayayay: i can feel my powers coming back, thank u :3\nhere's a new power, press C to switch between face\neach face give special powers" % [ScoreManager.fires])
+					set_dialog(":yayayayayay: i can feel my powers coming back, thank u :3\nhere's a new power, press C to switch between face\neach face give special powers")
+				elif ScoreManager.fires == 2:
+					set_dialog(":wowsers: wawaawawaawawa i'm getting so strong like Flavortown prime, only one left 👏\nyou can now get angy")
 				
 				ScoreManager.claimed_fires += 1
 			else:
