@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 				if ScoreManager.fires == 0:
 					set_dialog("Yooo, it's me Guy Fieri, yk the flavortown guy, i'm getting kinda cold :(( can you bring me da godot flames so I get can hot again and cook some crazy hackclub events\ncome back after getting one so I can give you sum free stuff 🤑")
 				elif ScoreManager.fires < 3:
-					set_dialog("waa, you're doing good, %s/3 fires collected, i'm getting hotter :p" % [ScoreManager.fires])
+					set_dialog("waa, you're doing good, %s/3 artifacts collected, i'm getting hotter :p" % [ScoreManager.fires])
 				
 	if distance > 375 and hasDialog:
 		close_dialog()

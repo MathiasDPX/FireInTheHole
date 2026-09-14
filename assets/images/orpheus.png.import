@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bawrdchxxdg2f"
-path="res://.godot/imported/nether.png-22fae21cb11f0923e43953264868508b.ctex"
+uid="uid://crs81chf30l2g"
+path="res://.godot/imported/orpheus.png-a047ac34144c806e8782e015b2f2e342.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/nether.png"
-dest_files=["res://.godot/imported/nether.png-22fae21cb11f0923e43953264868508b.ctex"]
+source_file="res://assets/images/orpheus.png"
+dest_files=["res://.godot/imported/orpheus.png-a047ac34144c806e8782e015b2f2e342.ctex"]
 
 [params]
 
