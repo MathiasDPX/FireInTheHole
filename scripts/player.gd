@@ -2,9 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 400.0
-const JUMP_VELOCITY = -400.0
-
-var face_idx = 0
+var JUMP_VELOCITY = -300.0
 
 var can_doublejump = false
 
@@ -26,10 +24,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	if face_idx != 1:
+	if ScoreManager.face != 1:
 		can_doublejump = false
-	elif is_on_floor() and face_idx == 1:
+		JUMP_VELOCITY = -300.0
+	elif is_on_floor() and ScoreManager.face == 1:
 		can_doublejump = true
+		JUMP_VELOCITY = -400.0
 		
 
 	move_and_slide()
@@ -39,11 +39,11 @@ func _process(_delta: float) -> void:
 		if ScoreManager.claimed_fires == 0:
 			return
 			
-		face_idx = (face_idx + 1) % (ScoreManager.claimed_fires + 1)
+		ScoreManager.face = (ScoreManager.face + 1) % (ScoreManager.claimed_fires + 1)
 		
-		if face_idx == 0:
+		if ScoreManager.face == 0:
 			$Sprite2D.texture = load("res://assets/images/faces/easy.png")
-		elif face_idx == 1:
+		elif ScoreManager.face == 1:
 			$Sprite2D.texture = load("res://assets/images/faces/peaceful_demon.png")
-		elif face_idx == 2:
+		elif ScoreManager.face == 2:
 			$Sprite2D.texture = load("res://assets/images/faces/insane_demon.png")
