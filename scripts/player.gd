@@ -47,3 +47,5 @@ func _process(_delta: float) -> void:
 			$Sprite2D.texture = load("res://assets/images/faces/peaceful_demon.png")
 		elif ScoreManager.face == 2:
 			$Sprite2D.texture = load("res://assets/images/faces/insane_demon.png")
+		elif ScoreManager.face == 3:
+			$Sprite2D.texture = load("res://assets/images/faces/bot.png")
