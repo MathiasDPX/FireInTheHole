@@ -1,0 +1,77 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: "4.7"
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: Web
+            directory: web
+            output: index.html
+          - platform: Linux
+            directory: linux
+            output: fire-in-the-hole.x86_64
+          - platform: Windows
+            directory: windows
+            output: fire-in-the-hole.exe
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Godot and export templates
+        shell: bash
+        run: |
+          base_url="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+          curl --fail --location --retry 3 "$base_url/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" -o "$RUNNER_TEMP/godot.zip"
+          curl --fail --location --retry 3 "$base_url/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "$RUNNER_TEMP/templates.tpz"
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
+          sudo install -m 755 "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+          unzip -q "$RUNNER_TEMP/templates.tpz" -d "$RUNNER_TEMP/godot-templates"
+          mkdir -p "$HOME/.local/share/godot/export_templates"
+          mv "$RUNNER_TEMP/godot-templates/templates" "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+
+      - name: Enable Compatibility renderer for Web
+        if: matrix.platform == 'Web'
+        shell: python
+        run: |
+          from pathlib import Path
+          project = Path("project.godot")
+          project.write_text(project.read_text().replace(
+              "[rendering]\n",
+              '[rendering]\n\nrenderer/rendering_method="gl_compatibility"\nrenderer/rendering_method.mobile="gl_compatibility"\n'
+          ))
+
+      - name: Import resources
+        run: godot --headless --editor --path . --import
+
+      - name: Export release
+        env:
+          EXPORT_PRESET: ${{ matrix.platform }}
+          EXPORT_DIRECTORY: ${{ matrix.directory }}
+          EXPORT_OUTPUT: ${{ matrix.output }}
+        run: |
+          mkdir -p "build/$EXPORT_DIRECTORY"
+          godot --headless --path . --export-release "$EXPORT_PRESET" "build/$EXPORT_DIRECTORY/$EXPORT_OUTPUT"
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: fire-in-the-hole-${{ matrix.directory }}
+          path: build/${{ matrix.directory }}/
+          if-no-files-found: error
