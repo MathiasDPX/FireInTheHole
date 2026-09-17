@@ -5,8 +5,23 @@ const SPEED = 400.0
 var JUMP_VELOCITY = -300.0
 
 var can_doublejump = false
+var moveable = true
+
+func _ready() -> void:
+	$"../HQ_Door/Area2D".ending_started.connect(start_ending)
+
+func start_ending() -> void:
+	var hq_pos = $"../HQ".global_position
+	moveable = false
+	
+	global_position.x = hq_pos.x + 300
+	global_position.y = hq_pos.y + 150
+	$Camera2D.global_position = hq_pos
 
 func _physics_process(delta: float) -> void:
+	if moveable == false:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
