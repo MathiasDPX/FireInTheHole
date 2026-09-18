@@ -15,3 +15,16 @@ Download for:
 - [Linux](https://nightly.link/MathiasDPX/FireInTheHole/workflows/build/main/fire-in-the-hole-linux.zip)
 - [Windows](https://nightly.link/MathiasDPX/FireInTheHole/workflows/build/main/fire-in-the-hole-windows.zip)
 - [Web](https://nightly.link/MathiasDPX/FireInTheHole/workflows/build/main/fire-in-the-hole-web.zip)
+
+
+## Face powers
+
+<details>
+<summary>spoiler...</summary>
+
+- easy: does nothing
+- peaceful demon: jump higher and can double jump
+- insane demon: can go through lava
+- bot: open the HQ door
+
+</details>
